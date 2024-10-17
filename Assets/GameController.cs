@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
     [SerializeField] int healtanterior = 0;
     public event EventHandler DeadPlayer;
 
+    public GameObject heartPrefab;
+    public Transform heartContainer;
+
     void Start()
     {
         _dataRepository = new DataRepository();
@@ -22,6 +25,9 @@ public class GameController : MonoBehaviour
         datosJuego=_dataRepository.LoadGame();
         puntaje = GameObject.Find("PuntajeText").GetComponent<TextMeshProUGUI>();
         healtText = GameObject.Find("HealtText").GetComponent<TextMeshProUGUI>();
+
+        heartPrefab = GameObject.Find("HeartImage");
+        heartContainer = GameObject.Find("HeartPanel").transform;
     }
     public void AddScore(int scoreToAdd)
     {
@@ -53,6 +59,14 @@ public class GameController : MonoBehaviour
     void Update()
     {
         puntaje.text = "Puntaje: " + datosJuego.score;
-        healtText.text = "Vida: " + string.Concat(Enumerable.Repeat("❤️", datosJuego.healt));
+        // healtText.text = "Vida: " + string.Concat(Enumerable.Repeat("❤️", datosJuego.healt));
+        foreach (Transform child in heartContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < datosJuego.healt; i++)
+        {
+            Instantiate(heartPrefab, heartContainer);
+        }
     }
 }
