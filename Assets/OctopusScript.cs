@@ -7,10 +7,11 @@ public class OctopusScript : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private float speed = 20f;
     [SerializeField] public Vector2 vectorMove;
+    GameObject gameManager;
 
     void Start()
     {
-
+        gameManager = GameObject.Find("GameController");
     }
 
     // Update is called once per frame
@@ -25,6 +26,10 @@ public class OctopusScript : MonoBehaviour
             vectorMove = new Vector2(-vectorMove.x, vectorMove.y);
 
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
+        if (other.CompareTag("Player"))
+        {
+            gameManager.GetComponent<GameController>().ModifyHealt(-1);
         }
     }
 }
