@@ -23,6 +23,7 @@ public class DataRepository
 
         var formatter = new BinaryFormatter();
         formatter.Serialize(file, data);
+        Debug.Log(Application.persistentDataPath);
         file.Close();
     }
 

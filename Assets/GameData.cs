@@ -7,6 +7,6 @@ using UnityEngine;
 public class GameData
 {
     public int score = 0;
-    public int vidas = 3;
+    public int healt = 5;
 
 }
