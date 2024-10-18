@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BalaScript : MonoBehaviour
@@ -7,10 +8,12 @@ public class BalaScript : MonoBehaviour
     [SerializeField] private float velocity;
     [SerializeField] private float attack;
     [SerializeField] public Vector2 direction;
+    GameObject gameManager;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log(direction);
+        gameManager = GameObject.Find("GameController");
         configuration();
     }
 
@@ -33,6 +36,13 @@ public class BalaScript : MonoBehaviour
     {
         if (other.CompareTag("WallInvisible"))
         {
+            Destroy(gameObject);
+            return;
+        }
+        if (other.gameObject.tag=="Enemy")
+        {
+            gameManager.GetComponent<GameController>().AddScore(5);
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }

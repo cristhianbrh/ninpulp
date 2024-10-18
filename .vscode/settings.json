@@ -56,6 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "My project.sln",
-    "dotnet.preferCSharpExtension": true
+
+  "dotnet.defaultSolution": "ninpulp.sln",
+  "dotnet.preferCSharpExtension": true
 }
