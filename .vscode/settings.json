@@ -56,5 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ninpulp.sln"
+
+  "dotnet.defaultSolution": "ninpulp.sln",
+  "dotnet.preferCSharpExtension": true
 }
