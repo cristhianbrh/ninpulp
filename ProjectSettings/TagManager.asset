@@ -7,6 +7,7 @@ TagManager:
   - WallInvisible
   - Dor
   - Door
+  - Bala
   layers:
   - Default
   - TransparentFX

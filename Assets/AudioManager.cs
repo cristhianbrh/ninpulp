@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip soundFile;
-    AudioSource audioSource;
-
-    void Awake() {
-        //audioSource = GetComponent<AudioSource>();
+    public static AudioManager Instance;
+    public AudioSource audioSource;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }    
+        audioSource = GetComponent<AudioSource>();    
     }
 
-    void OnEnable () {
-        
+    public void EjecutarSonido(AudioClip sonido){
+        audioSource.PlayOneShot(sonido);
     }
 }

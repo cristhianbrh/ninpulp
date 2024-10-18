@@ -18,6 +18,9 @@ public class DispPlayer : MonoBehaviour
     {
         GameObject newBala = Instantiate(bala, controllerDisp.position, controllerDisp.rotation);
 
+        // Asignar el tag "Bala" a la nueva instancia
+        newBala.tag = "Bala";
+
         BalaScript balaScript = newBala.GetComponent<BalaScript>();
         if (balaScript != null)
         {

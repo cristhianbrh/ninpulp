@@ -12,7 +12,6 @@ public class BalaScript : MonoBehaviour
     {
         Debug.Log(direction);
         configuration();
-
     }
 
 
