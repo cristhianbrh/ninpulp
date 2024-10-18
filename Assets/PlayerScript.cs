@@ -9,13 +9,16 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     private Animator playerAnimator;
     private SpriteRenderer sr;
-
+    public AudioSource moveSound;
+    private bool isMoving;
+    
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        isMoving = false;
     }
 
     // Update is called once per frame
@@ -33,8 +36,7 @@ public class PlayerScript : MonoBehaviour
         playerAnimator.SetFloat("Vertical", 0f);
         playerAnimator.SetFloat("Horizontal", 0f);
         sr.flipY = false;
-
-
+        
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             direction += Vector2.left;
@@ -66,5 +68,25 @@ public class PlayerScript : MonoBehaviour
             sr.flipY = true;
         }
         direction = direction.normalized;
+
+        // Verificar si el jugador está en movimiento
+        if (direction != Vector2.zero)
+        {
+            if (!isMoving)
+            {
+                // Si el jugador empieza a moverse, reproducir el sonido
+                moveSound.Play();
+                isMoving = true;
+            }
+        }
+        else
+        {
+            if (isMoving)
+            {
+                // Si el jugador se detiene, detener el sonido
+                moveSound.Stop();
+                isMoving = false;
+            }
+        }
     }
 }
