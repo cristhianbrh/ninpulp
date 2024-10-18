@@ -9,8 +9,13 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     private Animator playerAnimator;
     private SpriteRenderer sr;
-    public AudioSource moveSound;
-    private bool isMoving;
+
+    // Sonidos para movimiento
+    public AudioSource horizontalMoveSound;
+    public AudioSource verticalMoveSound;
+    
+    private bool isMovingHorizontal;
+    private bool isMovingVertical;
     
     // Start is called before the first frame update
     void Start()
@@ -18,7 +23,13 @@ public class PlayerScript : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        isMoving = false;
+
+        isMovingHorizontal = false;
+        isMovingVertical = false;
+
+        // Habilitar loop para ambos sonidos
+        horizontalMoveSound.loop = true;
+        verticalMoveSound.loop = true;
     }
 
     // Update is called once per frame
@@ -26,67 +37,83 @@ public class PlayerScript : MonoBehaviour
     {
         Movement();
     }
+
     private void FixedUpdate()
     {
         rigidbody2D.velocity = direction * speed;
     }
+
     private void Movement()
     {
         direction = Vector2.zero;
         playerAnimator.SetFloat("Vertical", 0f);
         playerAnimator.SetFloat("Horizontal", 0f);
         sr.flipY = false;
-        
+
+        bool movingHorizontally = false;
+        bool movingVertically = false;
+
+        // Detectar movimiento horizontal
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             direction += Vector2.left;
             playerAnimator.SetFloat("Horizontal", -1f);
-            playerAnimator.SetFloat("Vertical", 0f);
             sr.flipX = true;
-            sr.flipY = false;
+            movingHorizontally = true;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             direction += Vector2.right;
             playerAnimator.SetFloat("Horizontal", 1f);
-            playerAnimator.SetFloat("Vertical", 0f);
             sr.flipX = false;
-            sr.flipY = false;
+            movingHorizontally = true;
         }
+
+        // Detectar movimiento vertical
         if (Input.GetKey(KeyCode.UpArrow))
         {
             direction += Vector2.up;
             playerAnimator.SetFloat("Vertical", 1f);
-            playerAnimator.SetFloat("Horizontal", 0f);
-            sr.flipY = false;
+            movingVertically = true;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             direction += Vector2.down;
             playerAnimator.SetFloat("Vertical", -1f);
-            playerAnimator.SetFloat("Horizontal", 0f);
             sr.flipY = true;
+            movingVertically = true;
         }
+
         direction = direction.normalized;
 
-        // Verificar si el jugador está en movimiento
-        if (direction != Vector2.zero)
+        // Manejar sonido para movimiento horizontal
+        if (movingHorizontally)
         {
-            if (!isMoving)
+            if (!isMovingHorizontal)
             {
-                // Si el jugador empieza a moverse, reproducir el sonido
-                moveSound.Play();
-                isMoving = true;
+                horizontalMoveSound.Play();
+                isMovingHorizontal = true;
             }
         }
-        else
+        else if (isMovingHorizontal)
         {
-            if (isMoving)
+            horizontalMoveSound.Stop();
+            isMovingHorizontal = false;
+        }
+
+        // Manejar sonido para movimiento vertical
+        if (movingVertically)
+        {
+            if (!isMovingVertical)
             {
-                // Si el jugador se detiene, detener el sonido
-                moveSound.Stop();
-                isMoving = false;
+                verticalMoveSound.Play();
+                isMovingVertical = true;
             }
+        }
+        else if (isMovingVertical)
+        {
+            verticalMoveSound.Stop();
+            isMovingVertical = false;
         }
     }
 }
