@@ -15,7 +15,6 @@ public class BalaScript : MonoBehaviour
         Debug.Log(direction);
         gameManager = GameObject.Find("GameController");
         configuration();
-
     }
 
 

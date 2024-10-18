@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class OctopusScript : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private float speed = 20f;
     [SerializeField] public Vector2 vectorMove;
+    [SerializeField] private AudioClip colision;
+
     GameObject gameManager;
 
     void Start()
@@ -19,13 +20,20 @@ public class OctopusScript : MonoBehaviour
     {
         transform.Translate(vectorMove * speed * Time.deltaTime);
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("WallInvisible"))
         {
             vectorMove = new Vector2(-vectorMove.x, vectorMove.y);
-
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
+
+        // Colisión con la bala
+        if (other.CompareTag("Bala"))
+        {
+            AudioManager.Instance.EjecutarSonido(colision);
+            Destroy(gameObject);
         }
         if (other.CompareTag("Player"))
         {

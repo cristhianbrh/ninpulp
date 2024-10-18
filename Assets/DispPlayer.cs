@@ -4,61 +4,44 @@ using UnityEngine;
 
 public class DispPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private Transform controllerDisp;
     [SerializeField] private GameObject bala;
     [SerializeField] private float timeIntoDisp = 0.01f;
+    [SerializeField] private AudioSource proyectilSonido;
 
     private float tiempoDesdeUltimoDisparo;
-    void Start()
-    {
 
-    }
-    private void Atack(Vector2 direction)
-    {
-        GameObject newBala = Instantiate(bala, controllerDisp.position, controllerDisp.rotation);
-
-        BalaScript balaScript = newBala.GetComponent<BalaScript>();
-        if (balaScript != null)
-        {
-            balaScript.direction = direction;
-        }
-    }
-
-    // Update is called once per frame
     void Update()
     {
         tiempoDesdeUltimoDisparo += Time.deltaTime;
+
         if (tiempoDesdeUltimoDisparo >= timeIntoDisp)
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                Debug.Log("Acción especial w activada");
-                Atack(Vector2.up);
-                tiempoDesdeUltimoDisparo = 0f;
+            Vector2? direction = null;
 
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Debug.Log("Acción especial A activada");
-                Atack(Vector2.left);
-                tiempoDesdeUltimoDisparo = 0f;
+            if (Input.GetKeyDown(KeyCode.W)) direction = Vector2.up;
+            else if (Input.GetKeyDown(KeyCode.A)) direction = Vector2.left;
+            else if (Input.GetKeyDown(KeyCode.S)) direction = Vector2.down;
+            else if (Input.GetKeyDown(KeyCode.D)) direction = Vector2.right;
 
-            }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (direction.HasValue)
             {
-                Debug.Log("Acción especial S activada");
-                Atack(Vector2.down);
+                Debug.Log($"Acción especial {direction} activada");
+                Atack(direction.Value);
                 tiempoDesdeUltimoDisparo = 0f;
-
             }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                Debug.Log("Acción especial D activada");
-                Atack(Vector2.right);
-                tiempoDesdeUltimoDisparo = 0f;
+        }
+    }
 
-            }
-        };
+    private void Atack(Vector2 direction)
+    {
+        GameObject newBala = Instantiate(bala, controllerDisp.position, controllerDisp.rotation);
+        newBala.tag = "Bala";
+        proyectilSonido.Play();
+
+        if (newBala.TryGetComponent(out BalaScript balaScript))
+        {
+            balaScript.direction = direction;
+        }
     }
 }
