@@ -36,13 +36,14 @@ public class DispPlayer : MonoBehaviour
     private void Atack(Vector2 direction)
     {
         GameObject newBala = Instantiate(bala, controllerDisp.position, controllerDisp.rotation);
-        newBala.tag = "Bala";
-        proyectilSonido.Play();
+        
         BalaScript balaScript = newBala.GetComponent<BalaScript>();
         if (balaScript != null)
         {
             balaScript.direction = direction;
         }
+        newBala.tag = "Bala";
+        proyectilSonido.Play();
     }
     void Update()
     {
