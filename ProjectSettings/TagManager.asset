@@ -7,6 +7,9 @@ TagManager:
   - WallInvisible
   - Dor
   - Door
+  - Bala
+  - Kunai
+  - Enemy
   layers:
   - Default
   - TransparentFX

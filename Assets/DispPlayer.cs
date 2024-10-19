@@ -4,28 +4,47 @@ using UnityEngine;
 
 public class DispPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private Transform controllerDisp;
     [SerializeField] private GameObject bala;
     [SerializeField] private float timeIntoDisp = 0.01f;
+    [SerializeField] private AudioSource proyectilSonido;
 
     private float tiempoDesdeUltimoDisparo;
-    void Start()
-    {
 
-    }
+    // void Update()
+    // {
+    //     tiempoDesdeUltimoDisparo += Time.deltaTime;
+
+    //     if (tiempoDesdeUltimoDisparo >= timeIntoDisp)
+    //     {
+    //         Vector2? direction = null;
+
+    //         if (Input.GetKeyDown(KeyCode.W)) direction = Vector2.up;
+    //         else if (Input.GetKeyDown(KeyCode.A)) direction = Vector2.left;
+    //         else if (Input.GetKeyDown(KeyCode.S)) direction = Vector2.down;
+    //         else if (Input.GetKeyDown(KeyCode.D)) direction = Vector2.right;
+
+    //         if (direction.HasValue)
+    //         {
+    //             Debug.Log($"Acción especial {direction} activada");
+    //             Atack(direction.Value);
+    //             tiempoDesdeUltimoDisparo = 0f;
+    //         }
+    //     }
+    // }
+
     private void Atack(Vector2 direction)
     {
         GameObject newBala = Instantiate(bala, controllerDisp.position, controllerDisp.rotation);
-
+        
         BalaScript balaScript = newBala.GetComponent<BalaScript>();
         if (balaScript != null)
         {
             balaScript.direction = direction;
         }
+        newBala.tag = "Bala";
+        proyectilSonido.Play();
     }
-
-    // Update is called once per frame
     void Update()
     {
         tiempoDesdeUltimoDisparo += Time.deltaTime;
@@ -62,3 +81,5 @@ public class DispPlayer : MonoBehaviour
         };
     }
 }
+
+
