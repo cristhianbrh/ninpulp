@@ -6,6 +6,7 @@ using System;
 public class MenuGameOver : MonoBehaviour
 {
     [SerializeField] private GameObject menuGameOver;
+    [SerializeField] private GameObject menuStartGame;
     private GameController  gameController;
     private void Start()
     {
@@ -15,6 +16,20 @@ public class MenuGameOver : MonoBehaviour
 
     private void ActiveMenu(object sender, EventArgs e){
         menuGameOver.SetActive(true);
+    }
+    public void ActiveMenuStart(){
+        menuStartGame.SetActive(true);
+    }
+    public void ContinueGame()
+    {
+        // if()
+        gameController.resetData();
+        menuStartGame.SetActive(false);
+    }
+    public void StartGame()
+    {
+        gameController.resetData();
+        menuStartGame.SetActive(false);
     }
     public void Reload()
     {
