@@ -18,6 +18,9 @@ public class GameController : MonoBehaviour
     public GameObject heartPrefab;
     public Transform heartContainer;
 
+    private bool isPaused = false;
+
+
     void Start()
     {
         _dataRepository = new DataRepository();
@@ -67,6 +70,20 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < datosJuego.healt; i++)
         {
             Instantiate(heartPrefab, heartContainer);
+        }
+    }
+    public void TogglePause(bool pause)
+    {
+        isPaused = !pause;
+        
+
+        if (isPaused)
+        {
+            Time.timeScale = 0; // Pausa el tiempo
+        }
+        else
+        {
+            Time.timeScale = 1; // Reanuda el tiempo
         }
     }
 }
