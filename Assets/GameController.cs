@@ -8,7 +8,7 @@ using System.Linq;
 public class GameController : MonoBehaviour
 {
     private DataRepository _dataRepository;
-    private GameData datosJuego;
+    public GameData datosJuego;
     private TMP_Text puntaje;
     private TMP_Text healtText;
     int puntajeanterior = 0;

@@ -22,8 +22,9 @@ public class MenuGameOver : MonoBehaviour
     }
     public void ContinueGame()
     {
-        // if()
-        gameController.resetData();
+        if(gameController.datosJuego.healt <= 0){
+            gameController.resetData();
+        }
         menuStartGame.SetActive(false);
     }
     public void StartGame()
