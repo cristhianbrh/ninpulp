@@ -8,7 +8,7 @@ using System.Linq;
 public class GameController : MonoBehaviour
 {
     private DataRepository _dataRepository;
-    private GameData datosJuego;
+    public GameData datosJuego;
     private TMP_Text puntaje;
     private TMP_Text healtText;
     int puntajeanterior = 0;
@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour
 
     public GameObject heartPrefab;
     public Transform heartContainer;
+
+    private bool isPaused = false;
+
 
     void Start()
     {
@@ -67,6 +70,20 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < datosJuego.healt; i++)
         {
             Instantiate(heartPrefab, heartContainer);
+        }
+    }
+    public void TogglePause(bool pause)
+    {
+        isPaused = !pause;
+        
+
+        if (isPaused)
+        {
+            Time.timeScale = 0; // Pausa el tiempo
+        }
+        else
+        {
+            Time.timeScale = 1; // Reanuda el tiempo
         }
     }
 }
