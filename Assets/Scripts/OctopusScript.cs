@@ -8,14 +8,11 @@ public class OctopusScript : MonoBehaviour
     [SerializeField] public Vector2 vectorMove;
     [SerializeField] private AudioClip colision;
 
-    GameObject gameManager;
-
     void Start()
     {
-        gameManager = GameObject.Find("GameController");
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(vectorMove * speed * Time.deltaTime);
@@ -29,14 +26,14 @@ public class OctopusScript : MonoBehaviour
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
-        // Colisión con la bala
         if (other.CompareTag("Bala"))
         {
-            AudioManager.Instance.EjecutarSonido(colision);
+            AudioSource.PlayClipAtPoint(colision, transform.position);
             Destroy(gameObject);
         }
         if (other.CompareTag("Player"))
         {
+            GameObject gameManager = GameObject.Find("GameController");
             gameManager.GetComponent<GameController>().ModifyHealt(-1);
         }
     }
