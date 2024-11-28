@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2476005315160254213}
   serializedVersion: 2
   m_LocalRotation: {x: -0.2469819, y: -0, z: -0, w: 0.9690201}
-  m_LocalPosition: {x: -13.5, y: -0.23839134, z: -0.000000010949954}
+  m_LocalPosition: {x: -13.5, y: -0.23839134, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   direction: {x: 0, y: 0}
+  horizontalMoveSound: {fileID: 0}
+  verticalMoveSound: {fileID: 0}
 --- !u!50 &1645755083396014007
 Rigidbody2D:
   serializedVersion: 4
@@ -233,3 +235,4 @@ MonoBehaviour:
   controllerDisp: {fileID: 7332964048785994139}
   bala: {fileID: 8546196546891660960, guid: 3e18eab6c6bbb9846bcd9c03fafde68f, type: 3}
   timeIntoDisp: 0.5
+  proyectilSonido: {fileID: 0}

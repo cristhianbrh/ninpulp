@@ -311,6 +311,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 6543820252908982928, guid: 052696172e6351043aaea93da5ed1051, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6543820252908982928, guid: 052696172e6351043aaea93da5ed1051, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8383540409325653504, guid: 052696172e6351043aaea93da5ed1051, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -329,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8383540409325653504, guid: 052696172e6351043aaea93da5ed1051, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8383540409325653504, guid: 052696172e6351043aaea93da5ed1051, type: 3}
       propertyPath: m_LocalRotation.w
@@ -366,6 +374,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4558280220916256009, guid: 052696172e6351043aaea93da5ed1051, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1900891131}
+    - targetCorrespondingSourceObject: {fileID: 4558280220916256009, guid: 052696172e6351043aaea93da5ed1051, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1900891132}
   m_SourcePrefab: {fileID: 100100000, guid: 052696172e6351043aaea93da5ed1051, type: 3}
 --- !u!1 &1900891130 stripped
 GameObject:
@@ -393,6 +404,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1900891132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900891130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12fa24e77177b2b41859cd0959625d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PulpPrefab: {fileID: 8214617002273075661, guid: 9c3ed4d28aa60ba4b80a98f365106fe9, type: 3}
+  generationInterval: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
