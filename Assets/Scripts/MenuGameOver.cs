@@ -39,7 +39,7 @@ public class MenuGameOver : MonoBehaviour
     public void Reload()
     {
         gameController.resetData();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("SampleScene");
         gameController.TogglePause(true);
         menuStartGame.SetActive(false);
         menuGameOver.SetActive(false);
