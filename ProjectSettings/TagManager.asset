@@ -10,6 +10,7 @@ TagManager:
   - Bala
   - Kunai
   - Enemy
+  - WallInvisible2
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OctopusScript : MonoBehaviour
+public class OctopusScriptFin : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
     [SerializeField] public Vector2 vectorMove;
