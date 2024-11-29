@@ -9,21 +9,24 @@ public class OctopusScriptFin : MonoBehaviour
     [SerializeField] public Vector2 vectorMove;
     [SerializeField] private AudioClip colision;
     private bool isStopped = false;
+    private Rigidbody2D rb;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         // Inicialización si es necesario
     }
 
     void Update()
     {
-       
-            // Solo movemos horizontalmente
-            vectorMove.y = 0;
 
-            // Movemos al objeto
-            transform.Translate(vectorMove * speed * Time.deltaTime);
-       
+        // Solo movemos horizontalmente
+        vectorMove.y = 0;
+
+        // Movemos al objeto
+        transform.Translate(vectorMove * speed * Time.deltaTime);
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -31,16 +34,16 @@ public class OctopusScriptFin : MonoBehaviour
         if (other.CompareTag("WallInvisible") || other.CompareTag("Enemy"))
         {
             // Solo cambiar la dirección cuando estamos en la escena "Final_Fight"
-            
-                vectorMove = new Vector2(-vectorMove.x, vectorMove.y);
-                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            
+
+            vectorMove = new Vector2(-vectorMove.x, vectorMove.y);
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
         }
         if (other.CompareTag("WallInvisible2"))
         {
-            // Detenerse completamente si colisionamos con "WallInvisible2"
             vectorMove = Vector2.zero;
-            isStopped = true;
+            rb.gravityScale = 0;
+
         }
 
         if (other.CompareTag("Bala"))
@@ -48,6 +51,7 @@ public class OctopusScriptFin : MonoBehaviour
             // Reproducir sonido y destruir el objeto si colisiona con una bala
             AudioSource.PlayClipAtPoint(colision, transform.position);
             Destroy(gameObject);
+            Debug.Log("chocado con bala");
         }
         if (other.CompareTag("Player"))
         {

@@ -281,5 +281,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  vectorMove: {x: 1, y: 0}
-  colision: {fileID: 0}
+  vectorMove: {x: 1, y: 1}
+  colision: {fileID: 8300000, guid: 709369cd4ebf18a409e60811054f4393, type: 3}

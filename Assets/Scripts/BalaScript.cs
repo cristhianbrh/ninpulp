@@ -45,5 +45,15 @@ public class BalaScript : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
+         if (other.gameObject.tag == "Enemy")
+        {
+            // Reproducir sonido y destruir el objeto si colisiona con una bala
+            // AudioSource.PlayClipAtPoint(colision, transform.position);
+            Destroy(gameObject);
+            Debug.Log("chocado con bala");
+        }
     }
+
+
+     
 }
