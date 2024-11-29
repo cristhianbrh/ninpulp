@@ -10,14 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1235644998368899479}
   - component: {fileID: -3491454068211459254}
-  - component: {fileID: 3561833665284188817}
   - component: {fileID: 2307940018335149581}
   - component: {fileID: -8212372336051913745}
   - component: {fileID: 2413924510060016166}
   - component: {fileID: -1070988544947948182}
+  - component: {fileID: -1179237515664660351}
   m_Layer: 0
   m_Name: EnemyFin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,21 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3561833665284188817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8214617002273075661}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2e53b8acb03754896415fc32c7c794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  vectorMove: {x: 1, y: 0}
-  colision: {fileID: 8300000, guid: 2979dfdb64902ff4195e057859586adb, type: 3}
 --- !u!95 &2307940018335149581
 Animator:
   serializedVersion: 5
@@ -283,3 +268,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.32, y: 0.32}
   m_Direction: 0
+--- !u!114 &-1179237515664660351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214617002273075661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffec52267bb7334fb82e922663a29b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  vectorMove: {x: 1, y: 0}
+  colision: {fileID: 0}
