@@ -7,23 +7,31 @@ public class OctopusScript : MonoBehaviour
     [SerializeField] private float speed = 20f;
     [SerializeField] public Vector2 vectorMove;
     [SerializeField] private AudioClip colision;
+    private bool isStopped = false;
 
     void Start()
     {
 
     }
-
     void Update()
     {
-        transform.Translate(vectorMove * speed * Time.deltaTime);
+        if (!isStopped)
+        {
+            transform.Translate(vectorMove * speed * Time.deltaTime);
+        }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("WallInvisible"))
         {
             vectorMove = new Vector2(-vectorMove.x, vectorMove.y);
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
+        if (other.CompareTag("WallInvisible2"))
+        {
+            vectorMove = Vector2.zero;
+            isStopped = true;
+            // transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
         if (other.CompareTag("Bala"))
